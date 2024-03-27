@@ -68,12 +68,16 @@ functions.cloudEvent('sendValidationEmail', cloudEvent => {
 
   var json = JSON.parse(name);
   console.log('Parsing json from topic username:', json.username);
- 
+  console.log("cloudDBUser", process.env.cloudDBUser);
+  console.log("cloudDBPassword", process.env.cloudDBPassword);
+  console.log("cloudDBHost", process.env.cloudDBHost);
+  console.log("cloudDBDB", process.env.cloudDBDB);
+
   const pool = new Pool({
-    user: 'webapp',
-    database: 'webapp',
-    password: '>r>5Ary*}#0k=s5#',
-    host: '10.114.0.2',
+    user: process.env.cloudDBUser,
+    database: process.env.cloudDBDB,
+    password: process.env.cloudDBPassword,
+    host: process.env.cloudDBHost,
     port: 5432
   });
 
@@ -113,4 +117,3 @@ functions.cloudEvent('sendValidationEmail', cloudEvent => {
   //   }
   // )
 });
-

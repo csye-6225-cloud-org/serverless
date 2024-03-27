@@ -1,3 +1,10 @@
+# Archives
+*.zip
+
+# Mac specific files
+.DS_Store
+**/.DS_Store
+
 # Logs
 logs
 *.log
