@@ -3,57 +3,6 @@ const Pool = require('pg').Pool;
 var randomBytes = require("randombytes");
 const formData = require('form-data');
 const Mailgun = require('mailgun.js');
-
-// const Knex = require('knex');
-// const {Connector} = require('@google-cloud/cloud-sql-connector');
-
-// const connectWithConnector = async config => {
-//   const connector = new Connector();
-//   const clientOpts = await connector.getOptions({
-//     instanceConnectionName: 'csye-6225-project-dev:us-east1:private-ip-cloud-sql-instance',
-//     ipType: 'PRIVATE',
-//   });
-//   const dbConfig = {
-//     client: 'pg',
-//     connection: {
-//       ...clientOpts,
-//       user: 'webapp', 
-//       password: 'cY}eUT?&rkkDn:_4', 
-//       database: 'webapp',
-//     },
-//     ...config,
-//   };
-//   // Establish a connection to the database.
-//   return Knex(dbConfig);
-// }
-
-// const createPool = async () => {
-//   const config = {pool: {}};
-
-//   config.pool.max = 10;
-//   config.pool.min = 5;
-
-//   config.pool.acquireTimeoutMillis = 60000; // 60 seconds
-//   config.pool.createTimeoutMillis = 30000; // 30 seconds
-//   config.pool.idleTimeoutMillis = 600000; // 10 minutes
-//   config.pool.createRetryIntervalMillis = 200; // 0.2 seconds
-
-//   return connectWithConnector(config);
-// };
-
-// const updateUser = async () => {
-//     await createPool()
-//     .then(async pool => {
-//       return await pool('Users')
-//       .select();
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-
-// };
-
-
 const mailgunkey = "fcde11b70b4218dc2aabeff145f0dde4-f68a26c9-cf88b96e";
 
 // Register a CloudEvent callback with the Functions Framework that will
@@ -99,21 +48,12 @@ functions.cloudEvent('sendValidationEmail', cloudEvent => {
         to: [json.username],
         subject: "Email verification",
         text: "Please verify your email with the csye6225 service",
-        html: "<h1>Please verify your email with the csye6225 service</h1><p>http://abathula.tech:8080/v1/user/validate?username="+json.username+"&email_validation_token="+token+"</p> "
+        // html: "<h1>Please verify your email with the csye6225 service</h1><p>http://abathula.tech:8080/v1/user/validate?username="+json.username+"&email_validation_token="+token+"</p> "
+        html: "<table style=width:100%;padding:20px;border-spacing:3px;> <tr> <td><p><font face=Helvetica size=4px>Hi there</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>Thank you for registering with the csye6225 service. Please click on the link below to verify your email.</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>http://abathula.tech:8080/v1/user/validate?username="+json.username+"&email_validation_token="+token+">Verify</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>You must verify your email within 2 minutes of receiving it.</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>Welcome to csye6225!</font></p><td> </tr> </table>"
       })
       .then(msg => console.log(msg)) // logs response data
       .catch(err => console.log(err)); // logs any error
 
     }
   })
-
-  // updateUser().then(
-  //   data => {
-  //     console.log(data);
-  //   }
-  // ).catch(
-  //   err => {
-  //     console.log(err);
-  //   }
-  // )
 });

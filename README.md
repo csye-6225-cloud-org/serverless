@@ -9,6 +9,7 @@ Event driven architecture using Google Cloud Functions
 5. Eventarc API
 6. Cloud Pub/Sub API
 7. Cloud Run Admin API
+8. Serverless VPC Access API
 
 ## Instructions for setting up cloud functions
 3. Zip contents of serverless repo
