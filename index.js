@@ -46,10 +46,10 @@ functions.cloudEvent('sendValidationEmail', cloudEvent => {
       mg.messages.create('abathula.tech', {
         from: "Mail Admin <mail@abathula.tech>",
         to: [json.username],
-        subject: "Email verification",
+        subject: "Email verification with csye6225 service",
         text: "Please verify your email with the csye6225 service",
         // html: "<h1>Please verify your email with the csye6225 service</h1><p>http://abathula.tech:8080/v1/user/validate?username="+json.username+"&email_validation_token="+token+"</p> "
-        html: "<table style=width:100%;padding:20px;border-spacing:3px;> <tr> <td><p><font face=Helvetica size=4px>Hi there</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>Thank you for registering with the csye6225 service. Please click on the link below to verify your email.</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>http://abathula.tech:8080/v1/user/validate?username="+json.username+"&email_validation_token="+token+"</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>You must verify your email within 2 minutes of receiving it.</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>Welcome to csye6225!</font></p><td> </tr> </table>"
+        html: "<table style=width:100%;padding:20px;border-spacing:3px;> <tr> <td><p><font face=Helvetica size=4px>Hi there</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>Thank you for registering with the csye6225 service. Please click on the link below to verify your email.</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>https://abathula.tech:443/v1/user/validate?username="+json.username+"&email_validation_token="+token+"</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>You must verify your email within 2 minutes of receiving it.</font></p><td> </tr> <tr> <td><p><font face=Helvetica size=4px>Welcome to csye6225!</font></p><td> </tr> </table>"
       })
       .then(msg => console.log(msg)) // logs response data
       .catch(err => console.log(err)); // logs any error
